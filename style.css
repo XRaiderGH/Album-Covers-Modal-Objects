@@ -1,0 +1,163 @@
+
+#toggleMenu:checked ~ div.wrapper {
+  margin-left: 10em;
+}
+#toggleLabel::before{
+  color: white;
+  content: "\2630";
+}
+#toggleMenu:checked ~ div.wrapper #toggleLabel::before{
+content: "\2716";
+}
+#toggleLabel{
+  font-size: 2em;
+  font-weight: 900;
+}
+
+body{
+  padding-bottom: 0px;
+  margin: 0;
+}
+.navbar-inverse{
+  background-color: #151313;
+}
+.wrapper{
+  background-color: #221f1f;
+  height: 100%;
+  transition: margin-left .2s ease-out;
+}
+img.modalButton:hover{
+  transform: scale(1.5);
+  box-shadow: .5em .5em 2em rgba(0,0,0,0.7);
+}
+img.modalButton{
+  box-shadow: .5em .5em 2em rgba(0,0,0,0.2);
+  transition: transform .2s ease-out, box-shadow .4s ease-out;
+}
+h1{
+  color: white;
+}
+.grid{
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.test{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1em;
+  padding: 1em;
+  justify-items: center;
+}
+.masthead{
+  background-image: url("cd.png");
+}
+
+img{
+ width: 100%;
+}
+.track-length{
+  padding-left: 20px;
+}
+#validatie{
+}
+.br{
+  margin-top: 1em;
+}
+
+/* Modal */
+.modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0,0.5);
+  display: grid;
+  justify-items: center;
+}
+
+.modal {
+  height: 25em;
+  width: 750px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  max-height: 50%;
+  max-width: 80%;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #fff;
+  align-self: center;
+  animation: modalKey 1s forwards;
+}
+@keyframes modalKey {
+  0% {max-width: 30%; max-height: 15%;}
+  100% {max-width: 80%; max-height: 50%;}
+}
+
+.modalContent img{
+  position: relative;
+  width: 80%;
+}
+.closeButton{
+  position: relative;
+  left: 94%;
+  border-style: none;
+  border-radius: 10px;
+  background: rgb(202, 60, 60);
+  color: white;
+  grid-column: 3;
+  width: 30px;
+  height: 30px;
+}
+.modalContent{
+  margin-left: 15px;
+  margin-right: 5px;
+  align-content: center;
+  display: grid;
+  grid-template-columns:1fr 1fr;
+}
+.modalContent article{
+  grid-column: 2;
+}
+form.loginRegisterForm{
+  position: relative;
+  margin-left: 20%;
+  margin-top: 3em;
+}
+.loginRegister{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));;
+}
+.login{
+  grid-column: 11;
+}
+
+.register{
+  grid-column: 12;
+}
+
+.button.closeButton{
+  grid-column: 3;
+}
+.modal.closeButton{
+  grid-column: 3;
+}
+.validator{
+  padding-top: 15px;
+  background-color: #151313;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.validator-item{
+  grid-column: 1;
+}
+.validator-item2{
+  grid-column: 2;
+}
+.container{
+  margin-top: 20vh;
+  background-color: #3f3f3f;
+
+}
