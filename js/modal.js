@@ -1,42 +1,56 @@
-const modalContent = document.querySelectorAll('.modalContent');
+const modalView = {
+    allContent: document.querySelectorAll('.modalContent'),
+    allButtons: document.querySelectorAll('.modalButton'),
+    createBackground() {
+        let background = document.createElement('div');
+        background.classList.add('modalBackground');
+        return background;
+    },
+    createModal(){
+        let modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.addEventListener('click', (evt) => evt.stopPropagation());
+        return modal;
+    },
+    createCloseButton(){
+        let closeButton = document.createElement('div');
+        closeButton.className = 'closeButton';
+        closeButton.innerHTML = '&#x00D7';
 
-for(let i=0; i<modalContent.length; i++){
-    let nodeNumber = modalContent[i];
-    nodeNumber.parentNode.removeChild(nodeNumber);
+        closeButton.addEventListener('click',() =>{
+            this.close();
+        });
+
+        return closeButton;
+    },
+    open(elem) {
+        //background
+        this.background = this.createBackground();
+        document.body.appendChild(this.background);
+        //modal
+        this.modal = this.createModal();
+        document.body.appendChild(this.modal);
+        //closeButton
+        this.closeButton = this.createCloseButton();
+        this.modal.appendChild(this.closeButton);
+        //content
+        this.modal.appendChild(elem);
+    },
+    close() {
+        document.body.removeChild(this.background);
+        document.body.removeChild(this.modal);
+        this.modal.removeChild(this.closeButton);
+    },
+};
+//Init, removing content and adding event to buttons
+for (let i=0; i<modalView.allContent.length; i++){
+    modalView.allContent[i].parentNode.removeChild(modalView.allContent[i]);
 }
 
-const modalButton = document.querySelectorAll('.modalButton');
-const modalButtonArray = [];
-
-let modalBackground = document.createElement('div');
-modalBackground.className = 'modalBackground';
-let modal = document.createElement('div');
-modal.className = 'modal';
-let closeButton = document.createElement('button');
-closeButton.className = 'closeButton';
-closeButton.innerHTML = '&#x00D7;';
-
-const addContent = (event) => {
-    const counter = modalButtonArray.indexOf(event.target);
-    console.log(counter);
-    modal.appendChild(closeButton);
-    modal.appendChild(modalContent[counter]);//CONTROLEREN
-    modalBackground.appendChild(modal);
-    document.body.appendChild(modalBackground);
-};
-
-const closeModal = () => {
-    modal.innerHTML ='';
-    modalBackground.innerHTML ='';
-    document.body.removeChild(modalBackground);
-};
-
-closeButton.addEventListener('click', closeModal);
-
-for(let i=0; i<modalButton.length; i++) {
-    modalButtonArray.push(modalButton[i]);
-    modalButton[i].addEventListener('click', addContent);
+for (let i=0; i<modalView.allButtons.length; i++){
+    modalView.allButtons[i].addEventListener('click', () => {
+        let content = modalView.allContent[i];
+        modalView.open(content);
+        console.log('modal nr ' + [i]);
+    })
 }
-
-
-
